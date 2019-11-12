@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'paypal',
+    redirectTo: 'paypal-web',
     pathMatch: 'full'
   },
   {
@@ -14,11 +14,8 @@ const routes: Routes = [
   {
     path: 'paypal-web',
     loadChildren: './paypal-web/paypal.module#PaypalPageModule'
-  },
-  {
-    path: 'stripe',
-    loadChildren: './list/list.module#ListPageModule'
   }
+  
 ];
 
 @NgModule({

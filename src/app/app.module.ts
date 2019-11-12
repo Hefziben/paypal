@@ -10,10 +10,18 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PayPal } from '@ionic-native/paypal/ngx';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment.prod';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,   
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule

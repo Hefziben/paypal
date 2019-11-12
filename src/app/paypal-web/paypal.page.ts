@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
-// interface Window {
+import { Component, ViewChild, ElementRef } from '@angular/core';
+
 //   window?: any;
 // }
-// declare var window: Window;
+declare var paypal;
+
+
 
 @Component({
   selector: 'app-paypal',
@@ -11,21 +12,22 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
   styleUrls: ['paypal.page.scss'],
 })
 export class PaypalPage {
+  @ViewChild('paypal') paypalElement: ElementRef;
   paymentAmount: string = '3.33';
   currency: string = 'USD';
   currencyIcon: string = '$';
-  constructor(private payPal: PayPal) {
+  constructor() {
     let _this = this;
     setTimeout(() => {
       // Render the PayPal button into #paypal-button-container
-      <any>window['paypal'].Buttons({
+      paypal.Buttons({
 
         // Set up the transaction
         createOrder: function (data, actions) {
           return actions.order.create({
             purchase_units: [{
               amount: {
-                value: _this.paymentAmount
+                value: '10.00'
               }
             }]
           });
@@ -43,7 +45,7 @@ export class PaypalPage {
               console.log(err);
             })
         }
-      }).render('#paypal-button-container');
+      }).render('#paypal');
     }, 500)
 
   }
